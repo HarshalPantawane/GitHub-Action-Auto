@@ -6,7 +6,7 @@ name: Terraform Auto
 on: 
    push:
      branches:
-         - main
+                - main
 
 
 jobs:
