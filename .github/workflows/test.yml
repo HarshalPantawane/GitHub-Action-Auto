@@ -1,5 +1,4 @@
 name: Terraform Auto
-name: Auto Apply & Auto Destroy
 
 on:
   push:
@@ -14,7 +13,7 @@ jobs:
       AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       AWS_DEFAULT_REGION: us-east-1 # change if needed
 
-      
+
   apply:
     if: "! contains(github.event.head_commit.message, 'destroy')"
     runs-on: ubuntu-latest
