@@ -1,0 +1,27 @@
+name: Terraform Auto
+
+
+on: 
+   push:
+     branches:
+         - main
+
+
+jobs:
+   apply:
+      if: "! contains(github.event.head_commit.message, 'destroy')"
+      runs-on: ubuntu-latest
+      steps:
+        - uses: action/checkout@v3
+        - uses: hashicorp/setup-terraform@v2
+        - run: terraform init
+        - run: terraform apply -auto-approve
+
+   destroy:
+        if: "comtains(github.event.head_commit.message, 'destroy')"   
+        runs-on: ubuntu-latest
+        steps:
+          - uses: action/chechout@v3
+          - uses: hashicorp/setup-terraform@v2
+          - run: terraform init
+          - run: terraform destroy -auto-approve
